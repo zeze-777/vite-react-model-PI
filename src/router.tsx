@@ -4,12 +4,14 @@ import SignIn from "./pages/auth/sign-in";
 import { Dashboard } from "./pages/app/dashboard/dashboard";
 import { Pedidos } from "./pages/app/pedidos/pedidos";
 
+
 export const router = createBrowserRouter([
     {
         path: "/",
         children: [
             { path: "/dashboard", element: <Dashboard /> },
             { path: "/pedidos", element: <Pedidos /> },
+          
         ]
     },
     {

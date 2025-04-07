@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+//import React, { useState } from 'react';
 
 // Definindo o tipo do Pedido
 type Pedido = {
@@ -105,7 +105,7 @@ const Tabela = () => {
             <th style={{ padding: '12px 15px', textAlign: 'left' }}>Mesa</th>
             <th style={{ padding: '12px 15px', textAlign: 'left' }}>Produto</th>
             <th style={{ padding: '12px 15px', textAlign: 'left' }}>Status</th>
-            <th style={{ padding: '12px 15px', textAlign: 'center' }}>Ação</th>
+            <th style={{ padding: '12px 15px', textAlign: 'center', width: '150px'}}>Detalhes do Pedido</th>
           </tr>
         </thead>
         <tbody style={{ backgroundColor: '#ffffff', color: '#333333', fontSize: '14px' }}>

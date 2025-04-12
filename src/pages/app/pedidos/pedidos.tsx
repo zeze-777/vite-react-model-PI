@@ -1,11 +1,11 @@
-//import React, { useState } from 'react';
+import React, { useState } from 'react';
 
 // Definindo o tipo do Pedido
 type Pedido = {
-  id: string;
+  id: number;
+  id_pedido: number;
   mesa: string;
-  produto: string;
-  status: string;
+  garçon_name: string;
 };
 
 // Componente do Modal
@@ -46,9 +46,9 @@ const Modal = ({
       >
         <h3 style={{ marginBottom: '15px', color: '#C9A33C' }}>Detalhes do Pedido</h3>
         <p><strong>ID:</strong> {pedido.id || '---'}</p>
-        <p><strong>Mesa:</strong> {pedido.mesa || '---'}</p>
-        <p><strong>Produto:</strong> {pedido.produto || '---'}</p>
-        <p><strong>Status:</strong> {pedido.status || '---'}</p>
+        <p><strong>Mesa:</strong> {pedido.id_pedido || '---'}</p>
+        <p><strong>Produto:</strong> {pedido.mesa || '---'}</p>
+        <p><strong>Status:</strong> {pedido.garçon_name || '---'}</p>
         <button
           onClick={onClose}
           style={{
@@ -101,20 +101,20 @@ const Tabela = () => {
           }}
         >
           <tr>
-            <th style={{ padding: '12px 15px', textAlign: 'left' }}>ID Pedido</th>
-            <th style={{ padding: '12px 15px', textAlign: 'left' }}>Mesa</th>
-            <th style={{ padding: '12px 15px', textAlign: 'left' }}>Produto</th>
-            <th style={{ padding: '12px 15px', textAlign: 'left' }}>Status</th>
-            <th style={{ padding: '12px 15px', textAlign: 'center', width: '150px'}}>Detalhes do Pedido</th>
+            <th style={{ padding: '12px 15px', textAlign: 'left' }}>id</th>
+            <th style={{ padding: '12px 15px', textAlign: 'left' }}>id_pedido</th>
+            <th style={{ padding: '12px 15px', textAlign: 'left' }}>mesa</th>
+            <th style={{ padding: '12px 15px', textAlign: 'left' }}>garçon_name</th>
+            <th style={{ padding: '12px 15px', textAlign: 'center', width: '150px'}}>Pedido</th>
           </tr>
         </thead>
         <tbody style={{ backgroundColor: '#ffffff', color: '#333333', fontSize: '14px' }}>
           {linhasVazias.map((linha, index) => (
             <tr key={index}>
               <td style={{ padding: '12px 15px', borderBottom: '1px solid #ccc' }}>{linha.id}</td>
-              <td style={{ padding: '12px 15px', borderBottom: '1px solid #ccc' }}>{linha.mesa}</td>
-              <td style={{ padding: '12px 15px', borderBottom: '1px solid #ccc' }}>{linha.produto || '---'}</td>
-              <td style={{ padding: '12px 15px', borderBottom: '1px solid #ccc' }}>{linha.status || '---'}</td>
+              <td style={{ padding: '12px 15px', borderBottom: '1px solid #ccc' }}>{linha.id_pedido}</td>
+              <td style={{ padding: '12px 15px', borderBottom: '1px solid #ccc' }}>{linha.mesa || '---'}</td>
+              <td style={{ padding: '12px 15px', borderBottom: '1px solid #ccc' }}>{linha.garçon_name || '---'}</td>
               <td style={{ padding: '12px 15px', borderBottom: '1px solid #ccc', textAlign: 'center' }}>
                 <button
                   onClick={() => setPedidoSelecionado(linha)}

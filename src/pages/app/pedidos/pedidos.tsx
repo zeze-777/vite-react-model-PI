@@ -1,166 +1,71 @@
 //import React, { useState } from 'react';
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { api } from "../../../lib/axios";
+import { TableData } from "./types";
+import { Modal } from "./modalPedidos";
+import './pedios.css'
 
-// Definindo o tipo do Pedido
-type Pedido = {
-  id: string;
-  mesa: string;
-  produto: string;
-  status: string;
-};
 
-// Componente do Modal
-const Modal = ({
-  pedido,
-  onClose,
-}: {
-  pedido: Pedido | null;
-  onClose: () => void;
-}) => {
-  if (!pedido) return null;
-
-  return (
-    <div
-      style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        width: '100vw',
-        height: '100vh',
-        backgroundColor: 'rgba(0, 0, 0, 0.6)',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        zIndex: 1000,
-      }}
-    >
-      <div
-        style={{
-          backgroundColor: '#f5f5f5',
-          padding: '20px',
-          borderRadius: '8px',
-          width: '300px',
-          color: '#333333',
-          textAlign: 'center',
-          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.2)',
-        }}
-      >
-        <h3 style={{ marginBottom: '15px', color: '#C9A33C' }}>Detalhes do Pedido</h3>
-        <p><strong>ID:</strong> {pedido.id || '---'}</p>
-        <p><strong>Mesa:</strong> {pedido.mesa || '---'}</p>
-        <p><strong>Produto:</strong> {pedido.produto || '---'}</p>
-        <p><strong>Status:</strong> {pedido.status || '---'}</p>
-        <button
-          onClick={onClose}
-          style={{
-            marginTop: '15px',
-            padding: '10px 20px',
-            backgroundColor: '#C9A33C',
-            color: '#ffffff',
-            border: 'none',
-            borderRadius: '5px',
-            cursor: 'pointer',
-          }}
-        >
-          Fechar
-        </button>
-      </div>
-    </div>
-  );
-};
-
-// Componente da Tabela
 const Tabela = () => {
-  const [pedidoSelecionado, setPedidoSelecionado] = useState<Pedido | null>(null);
+  const [pedidoSelecionado, setPedidoSelecionado] = useState<TableData | null>(null);
+  const [excluiPedidos, setExcluiPedidos] = useState<TableData>(null);
+  const [dados, setDados] = useState<TableData[]>([]);
 
-  const linhasVazias: Pedido[] = Array.from({ length: 10 }, (_, index) => ({
-    id: `PD-${index + 1}`,
-    mesa: `M-${index + 1}`,
-    produto: '',
-    status: '',
-  }));
+  useEffect(() => {
+    const fetchTables = async () => {
+       
+        const response = await api.get('/pytable');
+        setDados(response.data.pyTable);      
+    };
 
+    fetchTables();
+  }, []);
+  
+ 
   return (
     <div style={{ fontFamily: "'Inter', sans-serif", width: '100%' }}>
       <h2 style={{ marginLeft: '120px', color: '#333333' }}>Pedidos</h2>
-      <table
-        style={{
-          width: '85%',
-          margin: '20px auto',
-          borderCollapse: 'collapse',
-          borderRadius: '8px',
-          overflow: 'hidden',
-          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-        }}
-      >
-        <thead
-          style={{
-            backgroundColor: '#EDE9E3',
-            color: '#333',
-            fontSize: '16px',
-            fontWeight: 600,
-          }}
-        >
+      <table className="ct-table">
+        <thead>
           <tr>
-            <th style={{ padding: '12px 15px', textAlign: 'left' }}>ID Pedido</th>
-            <th style={{ padding: '12px 15px', textAlign: 'left' }}>Mesa</th>
-            <th style={{ padding: '12px 15px', textAlign: 'left' }}>Produto</th>
-            <th style={{ padding: '12px 15px', textAlign: 'left' }}>Status</th>
-            <th style={{ padding: '12px 15px', textAlign: 'center', width: '150px'}}>Detalhes do Pedido</th>
+            <th>Data Pedido</th>
+            <th>Hora Pedido</th>
+            <th>ID Pedido</th>
+            <th >Mesa</th>
+            <th>Garçon</th>
+            <th>Status</th>
+            <th style={{ }}>Detalhes do Pedido</th>
           </tr>
         </thead>
-        <tbody style={{ backgroundColor: '#ffffff', color: '#333333', fontSize: '14px' }}>
-          {linhasVazias.map((linha, index) => (
+        <tbody>
+          {dados.map((dado, index) => (
             <tr key={index}>
-              <td style={{ padding: '12px 15px', borderBottom: '1px solid #ccc' }}>{linha.id}</td>
-              <td style={{ padding: '12px 15px', borderBottom: '1px solid #ccc' }}>{linha.mesa}</td>
-              <td style={{ padding: '12px 15px', borderBottom: '1px solid #ccc' }}>{linha.produto || '---'}</td>
-              <td style={{ padding: '12px 15px', borderBottom: '1px solid #ccc' }}>{linha.status || '---'}</td>
-              <td style={{ padding: '12px 15px', borderBottom: '1px solid #ccc', textAlign: 'center' }}>
-                <button
-                  onClick={() => setPedidoSelecionado(linha)}
-                  style={{
-                    padding: '8px 16px',
-                    borderRadius: '50px',
-                    backgroundColor: '#C9A33C',
-                    color: 'white',
-                    border: 'none',
-                    fontSize: '12px',
-                    cursor: 'pointer',
-                  }}
-                >
+              <td>{new Date(dado.createdAt).toLocaleDateString('pt-BR')}</td>
+              <td>{new Date(dado.createdAt).toLocaleTimeString('pt-BR')}</td>
+              <td>PD-{dado.id}</td>
+              <td>{dado.table}</td>
+              <td>{ dado.waiter}</td>
+              <td>{dado.status || '---'}</td>
+              <td className="td-btn">
+                <button className="ct-btn-table" onClick={() => setPedidoSelecionado(dado)}>
                   Ver Detalhes
                 </button>
+                <button className="ct-btn-table btn-del" onClick={() => setExcluiPedidos(dado)}><img src="./src/assets/lixeira.png" alt="Deletar" style={{ width: '20px', height: '20px', marginRight: '8px' }} />Excluir Pedido</button>
               </td>
             </tr>
-          ))}
-        </tbody>
+          ))} 
+        </tbody>      
       </table>
       <Modal pedido={pedidoSelecionado} onClose={() => setPedidoSelecionado(null)} />
     </div>
   );
 };
 
-// Componente principal
 export function Pedidos() {
   return (
-    <div
-      style={{
-        backgroundColor: '#FDFBF6',
-        minHeight: '100vh',
-        padding: '30px 0',
-        fontFamily: "'Inter', sans-serif",
-      }}
-    >
-      <h1
-        style={{
-          color: '#D2691E',
-          fontFamily: "'Brush Script MT', cursive",
-          textAlign: 'center',
-          marginBottom: '20px',
-        }}
-      >
+    <div className="container-table">
+      <h1 className="title-table">
         Pedrão Restaurante & Grill
       </h1>
       <Tabela />

@@ -1,0 +1,125 @@
+.title-table {
+    color: #D2691E;
+    font-family: 'Brush Script MT', cursive;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.container-table {
+    background-color: #FDFBF6;
+    min-height: 100vh;
+    padding: 30px 0;
+    font-family: 'Inter', sans-serif;
+}
+.p-description{
+    width: 100%;
+    font-size: 22px;
+}
+.p-order{
+    text-align:left;
+}
+.listOrders{
+    text-align: left;
+}
+.ct-btn{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+.btn-modal{
+    width: 180px;
+    font-size: 18px;
+    margin-top: 15px;
+    padding: 10px 20px;
+    box-sizing:border-box;
+    background-color: #C9A33C;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.bd-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+
+  .ct-modal {
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-radius: 8px;
+    width: 600px;
+    height: auto;
+    color: #333333;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start; 
+  }
+.ct-table{
+    padding:12px;
+    width: 85%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+.ct-table thead {
+    background-color: #EDE9E3;
+    color: #333;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.ct-table thead tr th{
+    padding: 20px 15px !important;
+    text-align: left; 
+}
+
+ 
+.ct-table tbody{
+    background-color: #ffffff;
+    color: #333333;
+    fontSize: 14px;
+}
+.ct-table tbody tr:hover {
+    background-color:rgba(238, 233, 225, 0.6);
+}
+.ct-table tbody td{
+    padding: 12px 15px; 
+    border-bottom: 1px solid rgba(192, 192, 192, 0.4);
+}
+.td-btn{
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+}
+.ct-btn-table{
+    padding: 8px 16px;
+    border-radius: 50px;
+    background-color: #C9A33C;
+    color: white;
+    border: none;
+    fontSize: 12px;
+    cursor: pointer;
+}
+
+.btn-del {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }

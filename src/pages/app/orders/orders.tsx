@@ -1,28 +1,26 @@
-//import React, { useState } from 'react';
-
 import { useEffect, useState } from "react";
 import { api } from "../../../lib/axios";
 import { TableData } from "./types";
-import { Modal } from "./modalPedidos";
-import './pedios.css'
-
+import { ModalOrders } from "./modalOrders";
+import { DelOrdersModal } from "./delOrders";
+import './pedidos.css';
 
 const Tabela = () => {
   const [pedidoSelecionado, setPedidoSelecionado] = useState<TableData | null>(null);
-  const [excluiPedidos, setExcluiPedidos] = useState<TableData>(null);
+  const [excluiPedidos, setExcluiPedidos] = useState<TableData | null>(null);
   const [dados, setDados] = useState<TableData[]>([]);
-
+  
   useEffect(() => {
     const fetchTables = async () => {
        
-        const response = await api.get('/pytable');
-        setDados(response.data.pyTable);      
+        const response = await api.get('/paytable');
+        setDados(response.data.paytable);      
     };
-
     fetchTables();
+    const interval = setInterval(fetchTables, 5000);
+    return () => clearInterval(interval);
   }, []);
   
- 
   return (
     <div style={{ fontFamily: "'Inter', sans-serif", width: '100%' }}>
       <h2 style={{ marginLeft: '120px', color: '#333333' }}>Pedidos</h2>
@@ -35,7 +33,7 @@ const Tabela = () => {
             <th >Mesa</th>
             <th>Garçon</th>
             <th>Status</th>
-            <th style={{ }}>Detalhes do Pedido</th>
+            <th>Detalhes do Pedido</th>
           </tr>
         </thead>
         <tbody>
@@ -46,7 +44,7 @@ const Tabela = () => {
               <td>PD-{dado.id}</td>
               <td>{dado.table}</td>
               <td>{ dado.waiter}</td>
-              <td>{dado.status || '---'}</td>
+              <td className={dado.status === 'Pendente' || dado.status === 'Em Preparação' ? 'ordersSt' : ''}>{dado.status || '---'}</td>
               <td className="td-btn">
                 <button className="ct-btn-table" onClick={() => setPedidoSelecionado(dado)}>
                   Ver Detalhes
@@ -54,15 +52,15 @@ const Tabela = () => {
                 <button className="ct-btn-table btn-del" onClick={() => setExcluiPedidos(dado)}><img src="./src/assets/lixeira.png" alt="Deletar" style={{ width: '20px', height: '20px', marginRight: '8px' }} />Excluir Pedido</button>
               </td>
             </tr>
-          ))} 
+          ))}
         </tbody>      
       </table>
-      <Modal pedido={pedidoSelecionado} onClose={() => setPedidoSelecionado(null)} />
+      <ModalOrders pedido={pedidoSelecionado} onClose={() => setPedidoSelecionado(null)} />
+      <DelOrdersModal pedido={excluiPedidos} onClose={() => setExcluiPedidos(null)}/>
     </div>
   );
 };
-
-export function Pedidos() {
+export function Orders() {
   return (
     <div className="container-table">
       <h1 className="title-table">

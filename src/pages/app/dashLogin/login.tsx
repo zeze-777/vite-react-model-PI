@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { api } from "../../../lib/axios";
 import "./login.css";
 
-export function DashLogin() {
+export function Login() {
         
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -15,7 +15,7 @@ export function DashLogin() {
     const handleSumit = async (event: { preventDefault: () => void; }) => {
         event.preventDefault();
         
-        const resp = await api.post('/logindash',{
+        const resp = await api.post('/login',{
             email: username,
             password: password
         });  
@@ -33,14 +33,12 @@ export function DashLogin() {
             <form onSubmit={handleSumit}>
                 <h1>Acesse o sistema</h1>
                 <div className="input-field">
-                    <input type="email" placeholder="E-mail"
-                        onChange={(e) => setUsername(e.target.value)} />
-                        <FaUser className="icon" />
+                    <input type="email" placeholder="E-mail" onChange={(e) => setUsername(e.target.value)} />
+                    <FaUser className="icon" />
                 </div>
 
                 <div className='input-field'>
-                    <input type="password" placeholder="Senha"
-                        onChange={(e) => setPassword(e.target.value)} />
+                    <input type="password" placeholder="Senha" onChange={(e) => setPassword(e.target.value)} />
                         <FaLock className="icon" />
                 </div>
 
@@ -57,10 +55,8 @@ export function DashLogin() {
                 <div className="signup-link">
                     <p>Não tem uma conta? <a href="#">Registrar</a></p>
                 </div>
-                <div className='error'>
-                   
-                </div>
+                <div className='error'></div>
             </form>
         </div>
-            
-)}
+    );   
+}

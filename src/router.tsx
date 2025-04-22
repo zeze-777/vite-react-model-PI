@@ -1,16 +1,18 @@
 import { createBrowserRouter } from "react-router-dom";
 import { NotFound } from "./pages/404";
 import SignIn from "./pages/auth/sign-in";
-import { DashLogin } from "./pages/app/dashLogin/dashLogin";
-import { Pedidos } from "./pages/app/pedidos/pedidos";
+import { Login } from "./pages/app/dashLogin/login";
+import { Orders } from "./pages/app/orders/orders";
+import {ViewTbPay} from "./pages/app/ViewPay/viewPay";
 
 
 export const router = createBrowserRouter([
     {
         path: "/",
         children: [
-            { path: "/", element: <DashLogin /> },
-            { path: "/pedidos", element: <Pedidos /> },
+            { path: "/", element: <Login/> },
+            { path: "/pedidos", element: <Orders /> },
+            { path: "/list-orderspay", element: <ViewTbPay/>}
         ]
     },
     {

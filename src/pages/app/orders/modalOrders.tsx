@@ -1,20 +1,25 @@
-import { TableData } from "./types";
+import { ModalProps} from "./types";
 import { api } from "../../../lib/axios";
 
-interface ModalProps {
-  pedido: TableData | null;
-  onClose: () => void;
-}
 
-export const Modal = ({ pedido, onClose }: ModalProps) => {
+export const ModalOrders = ({ pedido, onClose }: ModalProps) => {
   if (!pedido) return null;
 
   const upStatus = async () => {
+
+    let newStatus ='';
+
+    if(pedido.status ==='Pendente'){      
+      newStatus = 'Em Preparação'
+
+    } else if(pedido.status ==='Em Preparação') {
+        newStatus = 'Finalizado';
+    }else{return ;}
+
     await api.post("/status", {
       Id: pedido.id,
-      newStatus: "Em Preparação",
+      newStatus: newStatus
     });
-
     onClose();
     window.location.reload();
   };

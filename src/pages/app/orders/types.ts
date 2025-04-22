@@ -13,5 +13,11 @@ export interface TableData {
     order: OrderItem[];
     createdAt: Date;
     status: string;
+    statuspay: string;
     total: number;
+  }
+
+  export interface ModalProps {
+    pedido: TableData | null;
+    onClose: () => void;
   }

@@ -1,0 +1,52 @@
+/* Define o fundo da tela com uma cor suave */
+.home-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100vh;
+    background: #28282d; 
+    color: white;
+    text-align: center;
+    padding-top: 120px;
+  }
+  
+ 
+  .logo-container {
+    margin-bottom: 20px;
+  }
+  
+  .logo {
+    max-width: 200px; /* Tamanho ajustável */
+  }
+  
+  /* Centraliza os botões e dá espaçamento */
+  .buttons-container {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    margin-top: 0px;
+  }
+  
+  /* Estiliza os botões */
+  .home-button {
+    background-color: #C70000; 
+    color: white;
+    border: none;
+    width: 200px;           /* largura fixa */
+    height: 60px;           /* altura fixa */
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: inline-flex;   /* alinha conteúdo */
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  /* Adiciona efeito ao passar o mouse */
+  .home-button:hover {
+    background-color: #990000 ; /* Cor mais escura ao passar o mouse */
+  }

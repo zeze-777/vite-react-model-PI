@@ -27,11 +27,11 @@ export const ModalOrders = ({ pedido, onClose }: ModalProps) => {
   return (
     <div className="bd-modal">
       <div className="ct-modal">
-        <h3 style={{ marginBottom: "14px", color: "#C9A33C" }}>
+        <h3>
           Detalhes do Pedido
         </h3>
-        <p className="p-description"><strong>ID:</strong> {pedido.id}</p>
-        <p className="p-description"><strong>Mesa:</strong> {pedido.table}</p>
+        <p className="p-description p-ID"><strong>ID:</strong> {pedido.id}</p>
+        <p className="p-description p-Mesa"><strong>Mesa:</strong> {pedido.table}</p>
 
         <div className="p-description p-order">
           <strong>Pedido:</strong>
@@ -50,8 +50,13 @@ export const ModalOrders = ({ pedido, onClose }: ModalProps) => {
         </p>
 
         <div className="ct-btn">
-          <button className="btn-modal" onClick={upStatus}>{pedido.status}</button>
-          <button className="btn-modal" onClick={onClose}>Fechar</button>
+        {pedido.status !== 'Finalizado' && (
+            <button className="btn-modal" onClick={upStatus}>
+              {pedido.status === 'Pendente' && 'Preparar Pedido'}
+              {pedido.status === 'Em Preparação' && 'Finalizar Pedido'}
+            </button>
+          )}
+          <button className="btn-modal-Fechar" onClick={onClose}>Fechar</button>
         </div>
       </div>
     </div>

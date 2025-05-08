@@ -1,33 +1,73 @@
+body, html {
+    background-color: #121214;
+    margin: 0;
+    padding: 0;
+
+}
+
+.logo-restaurante {
+    position:absolute;
+    top: 40px;
+    left: 650px;
+    width: 190px; /* ajuste conforme necessário */
+    height: auto;
+    z-index: 1000;
+    padding: 10px;
+    background-color: #121214;
+}
+
+
 .title-table {
-    color: #D2691E;
-    font-family: 'Brush Script MT', cursive;
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 80px;
+
 }
 .container-table {
-    background-color: #FDFBF6;
+    background-color: #121214;
     min-height: 100vh;
+    margin-top: 120px;
     padding: 30px 0;
     font-family: 'Inter', sans-serif;
 }
-.nao-pago, .ordersSt {
+.nao-pago {
     color: red;
     font-weight: bold;
 }
 
-.p-description{
+.ordersSt.pendente {
+    color: #D45C5C; 
+    font-weight: bold; 
+}
+
+.ordersSt.emPreparacao {
+    color: #F4D03F;
+    font-weight: bold;  
+}
+
+.ordersSt.finalizado {
+    color: #58D68D; 
+    font-weight: bold; 
+}
+
+.p-description {
+    padding: 7px;
     width: 100%;
     font-size: 22px;
+    color: #e1e1e6;
 }
+
+
 .p-order{
     text-align:left;
+    padding: 7px;
 }
 .listOrders{
     text-align: left;
+    padding: 5px;
 }
 .delOrders{
     text-align: center;
-    color: #b31f1f;
+    color: #ff0000;
     font-weight: 800;
 }
 .ct-btn{
@@ -41,22 +81,41 @@
     width: 180px;
     font-size: 18px;
     margin-top: 15px;
+    margin-bottom: 7px;
     padding: 10px 20px;
     box-sizing:border-box;
-    background-color: #C9A33C;
+    background-color: #C70000;
     color: #ffffff;
     border: none;
-    border-radius: 5px;
+    border-radius: 7px;
     cursor: pointer;
     font-weight: 600;
     transition: all 0.3s ease;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
+
+.btn-modal-Fechar{
+    width: 180px;
+    font-size: 18px;
+    margin-top: 15px;
+    margin-bottom: 7px;
+    padding: 10px 20px;
+    box-sizing:border-box;
+    background-color: #2F4C5A;
+    color: #ffffff;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
 .btn-delModal{
-    background-color:rgb(131, 47, 22);
+    background-color: #C70000;
 }
 .btn-fechar{
-    background-color:rgb(91, 131, 150);
+    background-color: #2F4C5A;
 }
 
 .bd-modal {
@@ -73,12 +132,11 @@
   }
 
   .ct-modal {
-    background-color: #f5f5f5;
-    padding: 20px;
+    background-color: white ;
+    padding: 5px;
     border-radius: 8px;
     width: 600px;
     height: auto;
-    color: #333333;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -87,8 +145,9 @@
   }
 
   .ct-modal h3{
-    margin-bottom: 14px;
-    color: rgb(201, 163, 60);
+    padding: 5px;
+    margin-bottom: 5px;
+    color: #e1e1e6;
     text-align: center;
     width: 100%;
     font-size: 24px;
@@ -100,48 +159,71 @@
     border-collapse: collapse;
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+     
+    /*box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;*/
+      
 }
+
+.ct-table td:last-child, .ct-table th:last-child {
+    text-align: left;   /* Alinha o conteúdo da última coluna a esquerda */
+    width: 280px;         /* Ajusta a largura da última coluna */
+    padding: 10px;        /* Ajusta o padding da última coluna */
+  }
+
+
 .ct-table thead {
-    background-color: #EDE9E3;
-    color: #333;
+    background-color: #202024;
+    color: #e1e1e6;
     font-size: 16px;
     font-weight: 600;
 }
 
-.ct-table thead tr th{
+.ct-table thead tr th {
     padding: 20px 15px !important;
-    text-align: left; 
+    text-align: left;
+    
 }
+
+.h2 {
+    background-color: #121214;
+}
+
 .ct-table tbody{
-    background-color: #ffffff;
-    color: #333333;
+    /*background-color: #28282d;*/  
+    color: #c4c4cc;
     fontSize: 14px;
 }
 .ct-table tbody tr:hover {
-    background-color:rgba(238, 233, 225, 0.6);
+    background-color: #43434a;
 }
+
 .ct-table tbody td{
     padding: 12px 15px; 
-    border-bottom: 1px solid rgba(192, 192, 192, 0.4);
+    border-bottom: 1px solid rgba(196, 196, 204, 0.4);
+   
 }
 .td-btn{
     display: flex;
-    justify-content: center;
+    justify-content: left;
+    text-align: left;
+    align-items: left; 
     gap: 4px;
 }
 .ct-btn-table{
     padding: 8px 16px;
-    border-radius: 50px;
-    background-color: #C9A33C;
+    border-radius: 7px;
+    background-color: #C70000 ;
     color: white;
     border: none;
-    fontSize: 12px;
     cursor: pointer;
+    margin-left: 5px;
 }
 
 .btn-del {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: left;
+    justify-content: left;
   }
+
+ 
+

@@ -4,6 +4,8 @@ import { TableData } from "./types";
 import { ModalOrders } from "./modalOrders";
 import { DelOrdersModal } from "./delOrders";
 import './pedidos.css';
+import logo from '../../../assets/logo_pedrao_vazado.png';
+import lixeira from '../../../assets/lixeira.png';
 
 const Tabela = () => {
   const [pedidoSelecionado, setPedidoSelecionado] = useState<TableData | null>(null);
@@ -20,10 +22,19 @@ const Tabela = () => {
     const interval = setInterval(fetchTables, 5000);
     return () => clearInterval(interval);
   }, []);
+
+  const ordenarPedidos = (dados: TableData[]) => {
+    const ordemStatus = ['Pendente', 'Em Preparação', 'Finalizado'];
+
+    return dados.sort((a, b) => {
+      return ordemStatus.indexOf(a.status) - ordemStatus.indexOf(b.status);
+    });
+  };
   
   return (
-    <div style={{ fontFamily: "'Inter', sans-serif", width: '100%' }}>
-      <h2 style={{ marginLeft: '120px', color: '#333333' }}>Pedidos</h2>
+
+<div style={{ fontFamily: "'Inter', sans-serif", width: '100%', backgroundColor:"#121214" }}>
+      <h2 style={{ marginLeft: '120px', color: '#e1e1e6', backgroundColor:"#121214" }}>Pedidos</h2>
       <table className="ct-table">
         <thead>
           <tr>
@@ -31,25 +42,26 @@ const Tabela = () => {
             <th>Hora Pedido</th>
             <th>ID Pedido</th>
             <th >Mesa</th>
-            <th>Garçon</th>
+            <th>Garçom</th>
             <th>Status</th>
             <th>Detalhes do Pedido</th>
           </tr>
         </thead>
         <tbody>
-          {dados.map((dado, index) => (
+          {ordenarPedidos(dados).map((dado, index) => (
             <tr key={index}>
               <td>{new Date(dado.createdAt).toLocaleDateString('pt-BR')}</td>
               <td>{new Date(dado.createdAt).toLocaleTimeString('pt-BR')}</td>
               <td>PD-{dado.id}</td>
               <td>{dado.table}</td>
               <td>{ dado.waiter}</td>
-              <td className={dado.status === 'Pendente' || dado.status === 'Em Preparação' ? 'ordersSt' : ''}>{dado.status || '---'}</td>
+              <td className={`ordersSt 
+    ${dado.status === 'Pendente' ? 'pendente' : ''} ${dado.status === 'Em Preparação' ? 'emPreparacao' : ''} ${dado.status === 'Finalizado' ? 'finalizado' : ''}`}> {dado.status || '---'} </td>
               <td className="td-btn">
                 <button className="ct-btn-table" onClick={() => setPedidoSelecionado(dado)}>
                   Ver Detalhes
                 </button>
-                <button className="ct-btn-table btn-del" onClick={() => setExcluiPedidos(dado)}><img src="./src/assets/lixeira.png" alt="Deletar" style={{ width: '20px', height: '20px', marginRight: '8px' }} />Excluir Pedido</button>
+              <button className="ct-btn-table btn-del" onClick={() => setExcluiPedidos(dado)}><img src={lixeira} alt="Deletar" style={{ width: '17px', height: 'auto', marginRight: '1px', background: "#C70000" }} /> Excluir Pedido</button>
               </td>
             </tr>
           ))}
@@ -62,9 +74,10 @@ const Tabela = () => {
 };
 export function Orders() {
   return (
-    <div className="container-table">
-      <h1 className="title-table">
-        Pedrão Restaurante & Grill
+  
+  <div className="container-table">
+            <h1 className="title-table">
+        <img src={logo} alt="Logo do Restaurante" className="logo-restaurante" />
       </h1>
       <Tabela />
     </div>

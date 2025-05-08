@@ -3,6 +3,7 @@
     padding: 0;
     font-family: Helvetica;
     box-sizing: border-box;
+    background: #28282d;
 }
 
 .container {
@@ -14,9 +15,9 @@
 
 .container {
     width: 450px;
-    background-color:rgba(255, 255,255, 0.15);
+    background-color: #28282d;
     backdrop-filter: blur(10px) ;
-    border: 2px solid rgba(255, 255,255, 0.2);
+    border: 2px solid white;
     padding: 60px;
     border-radius: 10px;
 }
@@ -27,7 +28,7 @@
 .container h1 {
     text-align: center;
     font-size: 30px ;
-    color: #0f0f0f9a ;
+    color: white ;
 }
 
 .container .input-field { 
@@ -42,15 +43,15 @@
     height: 100%;
     background-color: transparent;
     outline: none;
-    border: 2px solid rgba(5, 5, 5, 0.2);
+    border: 2px solid white;
     border-radius: 20px;
     font-size: 16px;
-    color: #0f0e0e;
+    color:white;
     padding: 20px 25px;
 }
 
 .input-field input::placeholder {
-    color:#0b0b0b;
+    color:white;
 }
 
 .input-field .icon {
@@ -59,7 +60,7 @@
     top: 50%;
     transform: translate(-50%);
     font-size: 16px;
-    color:#0f0f0f;
+    color:white;
 }
 
 .container .recall-forget {
@@ -69,7 +70,7 @@
 }
 
 .recall-forget label {
-    color:#0b0a0a;
+    color:white;
 }
 
 .recall-forget input {
@@ -78,7 +79,7 @@
 
 .recall-forget a,
 .signup-link p a {
-    color:#010101;
+    color:white;
     text-decoration: none;
 }
 
@@ -90,8 +91,9 @@
 .container button {
     width: 100%;
     height: 50px;
-    background-color: #ffffff;
-    border: 1px solid rgba(5, 5, 5, 1.0);
+    /*background-color: #ffffff;*/
+    color: white;
+    border: 1px solid whitesmoke;
     outline: 1px;
     border-radius: 40px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -106,4 +108,12 @@
     text-align: center;
     margin: 20PX 0 10PX;
     text-shadow: none;
+    color: white
+}
+
+.logo {
+    display: block;
+    margin: 0 auto 20px auto;
+    width: 180px; /* ajuste conforme necessário */
+    height: auto;
 }

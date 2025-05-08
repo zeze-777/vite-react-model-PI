@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { api } from "../../../lib/axios";
 import { TableData } from "../orders/types";
 import { ModalPay } from "../ViewPay/modalPay";
+import logo from '../../../assets/logo_pedrao_vazado.png';
 import '../orders/pedidos.css';
 
 const ViewPay = () => {
@@ -21,8 +22,8 @@ const ViewPay = () => {
   }, []);
   
   return (
-    <div style={{ fontFamily: "'Inter', sans-serif", width: '100%' }}>
-      <h2 style={{ marginLeft: '120px', color: '#333333' }}>Visualização Para Pagamento</h2>
+    <div style={{ fontFamily: "'Inter', sans-serif", width: '100%', backgroundColor:"#121214" }}>
+      <h2 style={{ marginLeft: '120px', color: '#e1e1e6', backgroundColor:"#121214" }}>Visualização Para Pagamento</h2>
       <table className="ct-table">
         <thead>
           <tr>
@@ -30,7 +31,7 @@ const ViewPay = () => {
             <th>Hora Pedido</th>
             <th>ID Pedido</th>
             <th >Mesa</th>
-            <th>Garçon</th>
+            <th>Garçom</th>
             <th>Valor a Ser Pago</th>
             <th>Status Pag</th>
             <th>Detalhes do Pedido</th>
@@ -66,7 +67,7 @@ export function ViewTbPay() {
   return (
     <div className="container-table">
       <h1 className="title-table">
-        Pedrão Restaurante & Grill
+      <img src={logo} alt="Logo do Restaurante" className="logo-restaurante" />
       </h1>
       <ViewPay />
     </div>

@@ -4,7 +4,9 @@ import { useState } from "react";
 import { FaUser,FaLock } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { api } from "../../../lib/axios";
+import logo from '../../../assets/logo_pedrao_vazado.png';
 import "./login.css";
+
 
 export function Login() {
         
@@ -30,6 +32,7 @@ export function Login() {
     return (
          
         <div className="container">
+             <img src={logo} alt="Logo" className="logo" /> 
             <form onSubmit={handleSumit}>
                 <h1>Acesse o sistema</h1>
                 <div className="input-field">

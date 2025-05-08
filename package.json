@@ -1,5 +1,6 @@
 {
   "name": "pedrao-restaurante-app",
+<<<<<<< HEAD
   "version": "0.0.0",
   "private": true,
   "description": "HEAD\r # vite-react-model",
@@ -15,6 +16,11 @@
   "author": "",
   "type": "module",
   "main": "eslint.config.js",
+=======
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+>>>>>>> f5a77786061273cc75c7408d8fa647282f2f83b8
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
@@ -22,11 +28,17 @@
     "preview": "vite preview"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@react-icons/all-files": "^4.1.0",
     "axios": "^1.8.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-icons": "^5.5.0",
+=======
+    "axios": "^1.8.4",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+>>>>>>> f5a77786061273cc75c7408d8fa647282f2f83b8
     "react-router-dom": "^7.4.0"
   },
   "devDependencies": {
